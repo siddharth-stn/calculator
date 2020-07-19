@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    text-align: center;
+    padding-top: 150px;
+    margin: auto;
+    width: 60%;
+}
+
+.frame {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.frame > .display {
+    border: black solid 1px;
+    font-size: 50px;
+    padding-left: 20px;
+    padding-right: 10px;
+    height: 60px;
+    width: 380px; 
+    margin-bottom: 10px;
+    align-self: center;
+    text-align: right;
+}
+
+
+.keypad {
+    display: flex;
+}
+
+.numKeys {
+    border: black solid 1px;
+    font-size: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 300px;
+}
+
+.operators {
+    border: black solid 1px;
+    font-size: 70px;
+    padding-right: 17px;
+    padding-left: 20px; 
+}
