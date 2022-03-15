@@ -130,9 +130,9 @@ function operatorSelected (e) {
     if (numberOne == "") {
         return;
     }
-    if (operator != false) {
-        return;
-    }
+    //if (operator != false) {
+        //return;
+   // }
     if(Array.from(e.target.classList).includes("operator")) {
         operator = "";
         operator = e.target.textContent;
