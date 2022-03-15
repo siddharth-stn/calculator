@@ -138,7 +138,7 @@ function operatorSelected (e) {
                 result = numberOne + numberTwo;
                 break;
             case 8722:
-                result = numberOne - numberTwo;
+                result = Number(numberOne) - Number(numberTwo);
                 break;
             case 215:
                 result = numberOne * numberTwo;
