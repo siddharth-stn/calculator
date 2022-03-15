@@ -1,0 +1,164 @@
+@font-face {
+    font-family: "digital-clock";
+    src: url("./fonts/Open\ 24\ Display\ St.ttf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+/* font-family: 'Roboto', sans-serif; */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+} 
+
+body {
+    height: 100vh;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.233), 
+        rgba(0, 0, 0, 0.233)
+    ), url("./images/page-background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+
+    display: grid;
+    place-items: center;
+}
+
+.container {
+    width: 350px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: -26px -23px 13px -11px rgba(255,255,255,0.6), 
+    15px 15px 10px 2px rgba(0,0,0,0.6);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen {
+    text-align: right;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+    width: 95%;
+    border-radius: 5px;
+    height: 50px;
+    font-size: 35px;
+    line-height: 40px;
+    letter-spacing: 5px;
+    background-color: rgb(37, 36, 36);
+    color: whitesmoke;
+    font-family: "digital-clock", sans-serif;
+}
+
+.screenDigits {
+    font-family: inherit;
+}
+
+
+@keyframes cursor-blink {
+    0% {
+        opacity: 0;
+    }
+}
+
+.screenDigits::after {
+    content: "";
+    width: 2px;
+    height: 35px;
+    vertical-align: middle;
+    background-color: aqua;
+    display: inline-block;
+    animation: cursor-blink 1s steps(2) infinite;
+}
+
+.keyPad {
+    border-radius: 5px;
+    padding: 5px;
+    width: 95%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 100%;
+    box-shadow: inset 5px 5px 5px 0px rgba(0,0,0,0.4), inset -5px -5px 5px 0px rgba(255,255,255,0.7) ;
+
+    display: flex;
+}
+
+.numPad {
+    padding: 5px;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-pad {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.cBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.8rem;
+    font-weight: 900;
+    width: 40px;
+    height: 40px;
+    box-shadow: -2px -2px 5px 0px rgba(255, 255, 255, 0.7), 2px 2px 5px 0px rgba(0,0,0,0.7);
+}
+
+.numberBtns {
+    padding-right: 10px;
+    margin-top: 10px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.numberBtns button {
+    flex-grow: 1;
+    width: 27%;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -2px -2px 5px 0px rgba(255, 255, 255, 0.7), 
+    2px 2px 5px 0px rgba(0,0,0,0.7);
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.operatorPad {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.operatorPad button {
+    font-size: 2.5rem;
+    flex-grow: 1;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -2px -2px 5px 0px rgba(255, 255, 255, 0.7), 
+    2px 2px 5px 0px rgba(0,0,0,0.7);
+}
+
+.operatorPad .equals {
+    background-color: greenyellow;
+    flex-grow: 2;
+}
+
+button:hover {
+    transform: scale(1.1);
+    outline: 4px solid yellow;
+}
