@@ -149,7 +149,7 @@ function operatorSelected (e) {
             default:
                 break;
         }
-numberOne = result;
+numberOne = Number(result);
 numberTwo = 0;
     } 
 
