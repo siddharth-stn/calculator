@@ -68,7 +68,7 @@ function initializeCalc () {
 }
 
 //remove everything from screenDigits class
-function clearScreen () {
+function clearScreen () { 
     screenDigits.textContent = "";
 }
 
@@ -76,19 +76,39 @@ function clearScreen () {
 function digitsSelected (e) {
     if (result) {
         clearScreen();
-        initializeCalc();
+        numberTwo = "";
+        result = 0;
     }
-    if (Array.from(e.target.classList).includes("number")) {
         if(operator === false) {
-            numberOne += e.target.textContent;
-            //? console.log(typeof numberOne +  " " + numberOne);
+            if (!(Array.from(e.target.classList).includes("negate")) &&
+            (!(Array.from(e.target.classList).includes("dot")))) {
+                numberOne += e.target.textContent;
+            }
+            if (Array.from(e.target.classList).includes("negate") && numberOne != "") {
+                numberOne = -1 * numberOne;
+            }
+            if ((Array.from(e.target.classList).includes("dot"))) {
+                numberOne += ".";
+            }
+            screenDigits.textContent = numberOne;
         } else if (operator != false) {
             numberOne = Number(numberOne); //converted into number type for performing the operation
-            //? console.log(typeof numberOne + " " + numberOne);
             //store the second number after the selection of operator
-            numberTwo += e.target.textContent;
+            if (!(Array.from(e.target.classList).includes("negate"))  &&
+            (!(Array.from(e.target.classList).includes("dot")))) {
+                numberTwo += e.target.textContent;
+            }
+            if (Array.from(e.target.classList).includes("negate") && numberTwo != "") {
+                numberTwo = -1 * numberTwo;
+            }
+
+            if ((Array.from(e.target.classList).includes("dot"))) {
+                numberTwo += ".";
+            }
+            if (numberTwo != "") {
+                screenDigits.textContent = numberTwo;
+            }
         }
-    }
 }
 // unicode to ASCII values ---->
 // divide is 247
@@ -103,19 +123,26 @@ function operatorSelected (e) {
     if (numberOne == "") {
         return;
     }
+    if (operator != false) {
+        return;
+    }
     if(Array.from(e.target.classList).includes("operator")) {
         operator = "";
-        operator = e.target.textContent;        
+        operator = e.target.textContent;
+        if (operator.codePointAt(0) == 215) {
+            screenDigits.textContent = "*"
+        } else {
+            screenDigits.textContent = operator;        
+        }
     }
 }
 
 //function to calculate and return result after the equals button is clicked
 function calculate (e) {
     if (numberTwo === "") {
-        console.log("no second operand");
         return;
     }
-    if (Array.from(e.target.classList).includes("equals")) {
+    if (Array.from(e.target.classList).includes("equals") && operator != false) {
         numberTwo = Number(numberTwo); //to convert numberTwo string to number type for calculation
         switch (operator.codePointAt(0)) {
             case 43:
@@ -134,7 +161,15 @@ function calculate (e) {
                 break;
         }
         operator = false;
-        console.log(result);
+        result = result.toString();
+        if (result.length > 15) {
+            result = Number(result).toFixed(2).toString();
+        }
+        screenDigits.textContent = result;
+        numberOne = result;
         return result;
     }
 }
+
+// have to work on removing zero at the start of number
+// have to work on the logic of displaying and calculating very large numbers
