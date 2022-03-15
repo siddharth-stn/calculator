@@ -130,7 +130,7 @@ function operatorSelected (e) {
     if (numberOne == "") {
         return;
     }
-//Changes made here on github
+
     if (operator != false) {
         numberTwo = Number(numberTwo); //to convert numberTwo string to number type for calculation
         switch (operator.codePointAt(0)) {
@@ -152,7 +152,7 @@ function operatorSelected (e) {
 numberOne = result;
 numberTwo = 0;
     } 
-//Changes made up to here on github
+
     if(Array.from(e.target.classList).includes("operator")) {
         operator = "";
         operator = e.target.textContent;
