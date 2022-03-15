@@ -79,36 +79,43 @@ function digitsSelected (e) {
         numberTwo = "";
         result = 0;
     }
-        if(operator === false) {
-            if (!(Array.from(e.target.classList).includes("negate")) &&
-            (!(Array.from(e.target.classList).includes("dot")))) {
-                numberOne += e.target.textContent;
-            }
-            if (Array.from(e.target.classList).includes("negate") && numberOne != "") {
-                numberOne = -1 * numberOne;
-            }
-            if ((Array.from(e.target.classList).includes("dot"))) {
-                numberOne += ".";
-            }
-            screenDigits.textContent = numberOne;
-        } else if (operator != false) {
-            numberOne = Number(numberOne); //converted into number type for performing the operation
-            //store the second number after the selection of operator
-            if (!(Array.from(e.target.classList).includes("negate"))  &&
-            (!(Array.from(e.target.classList).includes("dot")))) {
-                numberTwo += e.target.textContent;
-            }
-            if (Array.from(e.target.classList).includes("negate") && numberTwo != "") {
-                numberTwo = -1 * numberTwo;
-            }
-
-            if ((Array.from(e.target.classList).includes("dot"))) {
-                numberTwo += ".";
-            }
-            if (numberTwo != "") {
-                screenDigits.textContent = numberTwo;
-            }
+    if(operator === false) {
+        if (!(Array.from(e.target.classList).includes("negate")) &&
+        (!(Array.from(e.target.classList).includes("dot")))) {
+            numberOne += e.target.textContent;
         }
+        if (Array.from(e.target.classList).includes("negate") && numberOne != "") {
+            numberOne = -1 * numberOne;
+        }
+        if ((Array.from(e.target.classList).includes("dot"))) {
+            numberOne += ".";
+        }
+        if (numberOne.length >= 2 && numberOne[0] == 0 && (!numberOne.includes("."))){
+            numberOne = numberOne.substring(1); //to remove zero from the start of the number
+        }
+        screenDigits.textContent = numberOne;
+    } else if (operator != false) {
+        numberOne = Number(numberOne); //converted into number type for performing the operation
+        //store the second number after the selection of operator
+        if (!(Array.from(e.target.classList).includes("negate"))  &&
+        (!(Array.from(e.target.classList).includes("dot")))) {
+            numberTwo += e.target.textContent;
+        }
+        if (Array.from(e.target.classList).includes("negate") && numberTwo != "") {
+            numberTwo = -1 * numberTwo;
+        }
+
+        if ((Array.from(e.target.classList).includes("dot"))) {
+            numberTwo += ".";
+        }
+        if (numberTwo != "") {
+            if (numberTwo.length >= 2 && numberTwo[0] == 0 && 
+                (!(numberTwo.toString().includes(".")))){
+                numberTwo = numberTwo.substring(1); //remove 0 from the start of non decimal numberr
+            }
+            screenDigits.textContent = numberTwo;
+        }
+    }
 }
 // unicode to ASCII values ---->
 // divide is 247
@@ -171,5 +178,4 @@ function calculate (e) {
     }
 }
 
-// have to work on removing zero at the start of number
 // have to work on the logic of displaying and calculating very large numbers
