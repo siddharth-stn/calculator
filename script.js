@@ -127,7 +127,7 @@ function digitsSelected (e) {
 
 //to store clicked operator in a variable
 function operatorSelected (e) {
-    if (numberOne == "") {
+    if (numberOne == "" && numberOne != 0) {
         return;
     }
 
