@@ -130,9 +130,29 @@ function operatorSelected (e) {
     if (numberOne == "") {
         return;
     }
-    //if (operator != false) {
-        //return;
-   // }
+//Changes made here on github
+    if (operator != false) {
+        numberTwo = Number(numberTwo); //to convert numberTwo string to number type for calculation
+        switch (operator.codePointAt(0)) {
+            case 43:
+                result = numberOne + numberTwo;
+                break;
+            case 8722:
+                result = numberOne - numberTwo;
+                break;
+            case 215:
+                result = numberOne * numberTwo;
+                break;
+            case 247:
+                result = numberOne / numberTwo;
+                break;
+            default:
+                break;
+        }
+numberOne = result;
+numberTwo = 0;
+    } 
+//Changes made up to here on github
     if(Array.from(e.target.classList).includes("operator")) {
         operator = "";
         operator = e.target.textContent;
